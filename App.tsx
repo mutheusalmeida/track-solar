@@ -1,27 +1,24 @@
+import { theme } from '@/resources/theme'
 import { StatusBar } from 'expo-status-bar'
-import { StyleSheet, View } from 'react-native'
-import styled from 'styled-components/native'
+import styled, { ThemeProvider } from 'styled-components/native'
 
 const Title = styled.Text`
-  color: #fff;
+  color: ${({ theme }) => theme.colors.cyan};
   font-size: 32px;
+`
+
+const Container = styled.SafeAreaView`
+  flex: 1;
 `
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Title>Hello, Matheus!</Title>
+    <ThemeProvider theme={theme}>
+      <Container>
+        <StatusBar style="light" />
 
-      <StatusBar style="auto" />
-    </View>
+        <Title>Hello, Matheus!</Title>
+      </Container>
+    </ThemeProvider>
   )
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#4f4f4f',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-})

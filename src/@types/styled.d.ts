@@ -25,3 +25,5 @@ declare module 'styled-components/native' {
     }
   }
 }
+
+export {}
