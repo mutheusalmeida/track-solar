@@ -23,6 +23,10 @@ export const ContentWrapper = styled.View`
   padding: 0 32px;
 `
 
+export const PaginationContainer = styled.View``
+
+export const PaginationItem = styled.View``
+
 export const ButtonWrapper = styled.View`
   align-self: stretch;
   padding: 0 16px;
