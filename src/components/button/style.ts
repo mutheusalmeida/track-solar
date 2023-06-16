@@ -25,5 +25,5 @@ export const Button = styled.TouchableOpacity.attrs(() => ({
 export const IconWrapper = styled.View`
   position: absolute;
   right: 16px;
-  transform: scaleX(-1) rotate(-45deg);
+  transform: scaleX(-1) rotate(-40deg);
 `
