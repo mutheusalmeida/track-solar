@@ -6,9 +6,11 @@ import * as S from './style'
 export const Welcome = () => {
   return (
     <S.Container>
-      <Text>Welcome</Text>
+      <S.Slider>
+        <Text>Welcome</Text>
 
-      <Button>Avançar</Button>
+        <Button>Avançar</Button>
+      </S.Slider>
     </S.Container>
   )
 }

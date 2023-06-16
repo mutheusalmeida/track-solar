@@ -7,11 +7,14 @@ import styled, { ThemeProvider } from 'styled-components/native'
 import * as SplashScreen from 'expo-splash-screen'
 import { useCallback } from 'react'
 import { Routes } from '@/routes'
+import { getStatusBarHeight } from '@/utils'
 
 SplashScreen.preventAutoHideAsync()
 
 const Container = styled.SafeAreaView`
   flex: 1;
+  background-color: ${({ theme }) => theme.colors.cyan};
+  padding: ${getStatusBarHeight()}px 16px;
 `
 
 export default function App() {
