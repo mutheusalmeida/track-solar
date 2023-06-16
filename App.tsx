@@ -14,7 +14,7 @@ SplashScreen.preventAutoHideAsync()
 const Container = styled.SafeAreaView`
   flex: 1;
   background-color: ${({ theme }) => theme.colors.cyan};
-  padding: ${getStatusBarHeight()}px 16px;
+  padding: ${getStatusBarHeight()}px 0;
 `
 
 export default function App() {

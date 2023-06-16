@@ -18,7 +18,12 @@ export const Content = styled.View`
   align-items: center;
 `
 
-export const Slider = styled.View`
+export const ContentWrapper = styled.View`
   gap: 44px;
+  padding: 0 32px;
+`
+
+export const ButtonWrapper = styled.View`
+  align-self: stretch;
   padding: 0 16px;
 `
