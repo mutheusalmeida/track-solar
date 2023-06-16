@@ -14,14 +14,14 @@ declare module 'styled-components/native' {
       DMSerifTextRegular: string
     }
     fontSize: {
-      xxxs12: number
-      xxs14: number
-      xs16: number
-      sm18: number
+      xxxs10: number
+      xxs12: number
+      xs14: number
+      sm16: number
       md20: number
       md22: number
-      lg30: number
-      xxl33: number
+      lg36: number
+      xl48: number
     }
   }
 }
