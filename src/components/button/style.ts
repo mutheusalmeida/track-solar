@@ -1,13 +1,7 @@
-import { TouchableOpacityProps } from 'react-native'
 import styled from 'styled-components/native'
+import type { ButtonProps } from './button'
 
-type ButtonType = {
-  backgroundColor?: string
-  borderColor?: string
-  borderRadius?: number
-  height?: number
-  width?: number
-} & TouchableOpacityProps
+type ButtonType = ButtonProps
 
 export const Button = styled.TouchableOpacity.attrs(() => ({
   activeOpacity: 0.75,

@@ -5,7 +5,7 @@ import { Dimensions, View } from 'react-native'
 import ReanimatedCarousel from 'react-native-reanimated-carousel'
 import { GestureHandlerRootView } from 'react-native-gesture-handler'
 import { enableLegacyWebImplementation } from 'react-native-gesture-handler'
-import { useMemo, useState } from 'react'
+import { useMemo, useRef, useState } from 'react'
 
 enableLegacyWebImplementation(true)
 
@@ -15,6 +15,7 @@ const Carousel = () => {
   const { width } = Dimensions.get('window')
   const theme = useTheme()
   const [activeSlide, setActiveSlide] = useState(1)
+  const carouselRef = useRef()
 
   const data = useMemo(
     () => [
@@ -69,6 +70,7 @@ const Carousel = () => {
           data={data}
           scrollAnimationDuration={1000}
           pagingEnabled
+          ref={carouselRef}
           onProgressChange={(_, absoluteProgress) => {
             setActiveSlide(absoluteProgress)
           }}
@@ -124,6 +126,8 @@ const Carousel = () => {
 }
 
 export const Welcome = () => {
+  const next = () => {}
+
   return (
     <S.Container>
       <S.Content>
