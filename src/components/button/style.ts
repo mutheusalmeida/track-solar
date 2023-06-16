@@ -16,8 +16,7 @@ export const Button = styled.TouchableOpacity.attrs(() => ({
     backgroundColor || theme.colors.yellow};
   border-radius: ${({ borderRadius }) => `${borderRadius || 10}px`};
   height: ${({ height }) => `${height || 54}px`};
-  max-width: 100%;
-  width: ${({ width }) => `${width || 328}px`};
+  align-self: stretch;
   align-items: center;
   justify-content: center;
   position: relative;
