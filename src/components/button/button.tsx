@@ -14,10 +14,10 @@ export const Button = ({ children }: ButtonProps) => {
 
   return (
     <S.Button>
-      <Text color={theme.colors.cyan}>{children}</Text>
+      <Text color={theme.colors.cyan300}>{children}</Text>
 
       <S.IconWrapper>
-        <ArrowIcon color={theme.colors.cyan} width={24} height={16} />
+        <ArrowIcon color={theme.colors.cyan300} width={24} height={16} />
       </S.IconWrapper>
     </S.Button>
   )

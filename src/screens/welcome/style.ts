@@ -6,7 +6,7 @@ export const Container = styled.SafeAreaView`
   justify-content: flex-end;
   align-items: center;
   padding: 0 0 54px;
-  background-color: ${({ theme }) => theme.colors.cyan};
+  background-color: ${({ theme }) => theme.colors.cyan300};
 `
 
 export const Title = styled(Text)`

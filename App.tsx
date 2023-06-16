@@ -13,7 +13,7 @@ SplashScreen.preventAutoHideAsync()
 
 const Container = styled.SafeAreaView`
   flex: 1;
-  background-color: ${({ theme }) => theme.colors.cyan};
+  background-color: ${({ theme }) => theme.colors.cyan300};
   padding: ${getStatusBarHeight()}px 0;
 `
 
