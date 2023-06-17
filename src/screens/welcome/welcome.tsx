@@ -3,13 +3,15 @@ import { Button } from '@/components/button'
 import { useRef, useState } from 'react'
 import { theme } from '@/resources/theme'
 import { Carousel } from '@/components/carousel'
-import type { CarouselActions } from 'components'
+import type { CarouselActions, RootStackParamList } from 'components'
+import { NavigationProp, useNavigation } from '@react-navigation/native'
 
 import * as S from './style'
 
 export const Welcome = () => {
   const carouselActions = useRef<CarouselActions>()
   const [current, setCurrent] = useState(0)
+  const { navigate } = useNavigation<NavigationProp<RootStackParamList>>()
 
   const getCurrentIndex = (current: number) => {
     setCurrent(current)
@@ -20,7 +22,7 @@ export const Welcome = () => {
   return (
     <S.Container>
       {!isLastItem ? (
-        <SecondaryBtn>
+        <SecondaryBtn onPress={() => navigate('Credential')}>
           <Text
             fontSize={theme.fontSize.md20}
             fontFamily={theme.fontFamily.DMSansRegular}

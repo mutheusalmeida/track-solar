@@ -15,4 +15,8 @@ declare module 'components' {
     height?: number
     width?: number
   } & Omit<TouchableOpacityProps, 'activeOpacity'>
+
+  export type ScreenNames = ['Welcome', 'Credential']
+
+  export type RootStackParamList = Record<ScreenNames[number], undefined>
 }
