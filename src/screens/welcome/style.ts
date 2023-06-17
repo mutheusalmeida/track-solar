@@ -1,4 +1,3 @@
-import { Text } from '@/styles'
 import styled from 'styled-components/native'
 
 export const Container = styled.SafeAreaView`
@@ -9,25 +8,14 @@ export const Container = styled.SafeAreaView`
   background-color: ${({ theme }) => theme.colors.cyan300};
 `
 
-export const Title = styled(Text)`
-  width: 308px;
-`
-
 export const Content = styled.View`
   gap: 74px;
   align-items: center;
 `
 
-export const ContentWrapper = styled.View`
-  gap: 44px;
-  padding: 0 32px;
-`
-
-export const PaginationContainer = styled.View``
-
-export const PaginationItem = styled.View``
-
 export const ButtonWrapper = styled.View`
   align-self: stretch;
+  align-items: center;
+  gap: 24px;
   padding: 0 16px;
 `

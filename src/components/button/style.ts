@@ -1,7 +1,7 @@
+import { BaseButtonType } from 'components'
 import styled from 'styled-components/native'
-import type { ButtonProps } from './button'
 
-type ButtonType = ButtonProps
+type ButtonType = BaseButtonType
 
 export const Button = styled.TouchableOpacity.attrs(() => ({
   activeOpacity: 0.75,

@@ -1,19 +1,11 @@
-import { ReactNode } from 'react'
 import { Text } from '@/styles'
 import { useTheme } from 'styled-components/native'
 import ArrowIcon from '@/assets/arrow-icon'
-import { TouchableOpacityProps } from 'react-native'
+import { BaseButtonType } from 'components'
 
 import * as S from './style'
 
-export type ButtonProps = {
-  children: ReactNode
-  backgroundColor?: string
-  borderColor?: string
-  borderRadius?: number
-  height?: number
-  width?: number
-} & Omit<TouchableOpacityProps, 'activeOpacity'>
+type ButtonProps = BaseButtonType
 
 export const Button = ({
   backgroundColor,

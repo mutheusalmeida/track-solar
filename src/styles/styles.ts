@@ -16,3 +16,7 @@ export const Text = styled.Text<TextType>`
     fontFamily || theme.fontFamily.DMSansRegular};
   color: ${({ color, theme }) => color || theme.colors.white};
 `
+
+export const SecondaryBtn = styled.TouchableOpacity.attrs(() => ({
+  activeOpacity: 0.75,
+}))``
