@@ -79,7 +79,17 @@ export const Welcome = () => {
         <Carousel getCurrentIndex={getCurrentIndex} ref={carouselActions} />
 
         <S.ButtonWrapper>
-          <Button onPress={() => carouselActions.current.next()}>
+          <Button
+            onPress={() => {
+              if (isLastItem) {
+                navigate('Credential')
+
+                return
+              }
+
+              carouselActions.current.next()
+            }}
+          >
             {isLastItem ? <>Inciar</> : <>Avançar</>}
           </Button>
 
