@@ -8,8 +8,8 @@ export const Button = styled.TouchableOpacity.attrs(() => ({
 }))<ButtonType>`
   background-color: ${({ backgroundColor, theme }) =>
     backgroundColor || theme.colors.yellow};
-  border-radius: ${({ borderRadius }) => `${borderRadius || 10}px`};
-  height: ${({ height }) => `${height || 54}px`};
+  border-radius: ${({ borderRadius }) => borderRadius || 10}px;
+  height: ${({ height }) => height || 54}px;
   align-self: stretch;
   align-items: center;
   justify-content: center;
