@@ -7,6 +7,7 @@ import { Welcome } from '@/screens/welcome'
 import { Credential } from '@/screens/credential'
 import { RootStackParamList } from 'components'
 import { StackHeader } from '@/components/stack-header'
+import { Home } from '@/screens/home'
 
 const { Navigator, Screen } = createNativeStackNavigator<RootStackParamList>()
 
@@ -34,6 +35,8 @@ export const Routes = () => {
           }}
           component={Credential}
         />
+
+        <Screen name="Home" options={{ headerShown: false }} component={Home} />
       </Navigator>
     </NavigationContainer>
   )

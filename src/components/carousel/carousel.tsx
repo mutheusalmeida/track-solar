@@ -5,7 +5,6 @@ import ReanimatedCarousel, {
   ICarouselInstance,
 } from 'react-native-reanimated-carousel'
 import { GestureHandlerRootView } from 'react-native-gesture-handler'
-import { enableLegacyWebImplementation } from 'react-native-gesture-handler'
 import {
   ForwardedRef,
   forwardRef,
@@ -17,8 +16,6 @@ import { theme } from '@/resources/theme'
 import { CarouselActions } from 'components'
 import { SunIcon } from '@/assets/sun-icon'
 
-enableLegacyWebImplementation(true)
-
 import * as S from './style'
 
 const data = [
@@ -29,7 +26,7 @@ const data = [
         fontFamily={theme.fontFamily.DMSerifTextRegular}
         fontSize={theme.fontSize.lg36}
         lineHeight={44}
-        style={{ width: 286 }}
+        style={{ width: 296 }}
       >
         Quanto a sua usina gerou hoje?
       </S.Title>
@@ -89,13 +86,13 @@ export const Carousel = forwardRef(
 
     return (
       <GestureHandlerRootView>
-        <View style={{ flex: 1, gap: 44 }}>
+        <View style={{ gap: 44 }}>
           <ReanimatedCarousel
             loop={false}
             width={width}
             height={350}
             data={data}
-            scrollAnimationDuration={1000}
+            scrollAnimationDuration={600}
             pagingEnabled
             ref={carouselRef}
             onProgressChange={(_, absoluteProgress) => {

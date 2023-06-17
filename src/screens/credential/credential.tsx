@@ -9,6 +9,21 @@ export const Credential = () => {
   const theme = useTheme()
   const [value, setValue] = useState('')
 
+  const onSubmit = async () => {
+    const data = await fetch(
+      'https://y-plants-api.bravedesert-7b0b5672.westus2.azurecontainerapps.io/plant/generation/test-2023?dataType=yearly',
+      {
+        headers: {
+          Authorization: 'Bearer HeDKyixt_yMhR4TOvL4HNktaOxga-mgLkUcF',
+          'Content-Type': 'application/json',
+        },
+      }
+    )
+    const res = await data.json()
+
+    console.log(res)
+  }
+
   return (
     <S.Container>
       <Logo />
@@ -22,10 +37,10 @@ export const Credential = () => {
           inputMode="text"
           onChangeText={setValue}
           value={value}
-          onSubmitEditing={(e) => console.log(e.nativeEvent.text)}
+          onSubmitEditing={onSubmit}
         />
 
-        <Button onPress={(e) => console.log(value)}>Entrar</Button>
+        <Button onPress={onSubmit}>Entrar</Button>
       </S.FieldWrapper>
     </S.Container>
   )

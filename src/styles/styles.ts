@@ -6,6 +6,7 @@ type TextType = {
   fontFamily?: string
   fontSize?: number
   lineHeight?: number
+  textAlign?: 'center' | 'right' | 'left'
 } & TextProps
 
 export const Text = styled.Text<TextType>`
@@ -15,8 +16,9 @@ export const Text = styled.Text<TextType>`
   font-family: ${({ fontFamily, theme }) =>
     fontFamily || theme.fontFamily.DMSansRegular};
   color: ${({ color, theme }) => color || theme.colors.white};
+  text-align: ${({ textAlign }) => textAlign || 'left'};
 `
 
 export const TransparentBtn = styled.TouchableOpacity.attrs(() => ({
-  activeOpacity: 0.75,
+  activeOpacity: 0.6,
 }))``
