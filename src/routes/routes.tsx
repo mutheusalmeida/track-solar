@@ -6,9 +6,7 @@ import {
 import { Welcome } from '@/screens/welcome'
 import { Credential } from '@/screens/credential'
 import { RootStackParamList } from 'components'
-import { TransparentBtn } from '@/styles'
-import { ArrowIcon } from '@/assets/arrow-icon'
-import { View } from 'react-native'
+import { StackHeader } from '@/components/stack-header'
 
 const { Navigator, Screen } = createNativeStackNavigator<RootStackParamList>()
 
@@ -30,12 +28,8 @@ export const Routes = () => {
         <Screen
           name="Credential"
           options={{
-            header: ({ navigation }: NativeStackHeaderProps) => (
-              <View style={{ flex: 1, padding: 32 }}>
-                <TransparentBtn onPress={() => navigation.goBack()}>
-                  <ArrowIcon color="white" />
-                </TransparentBtn>
-              </View>
+            header: (props: NativeStackHeaderProps) => (
+              <StackHeader {...props} />
             ),
           }}
           component={Credential}
