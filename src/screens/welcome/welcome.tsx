@@ -19,6 +19,22 @@ export const Welcome = () => {
 
   return (
     <S.Container>
+      {!isLastItem ? (
+        <SecondaryBtn>
+          <Text
+            fontSize={theme.fontSize.md20}
+            fontFamily={theme.fontFamily.DMSansRegular}
+            style={{
+              textDecorationLine: 'underline',
+              alignSelf: 'flex-end',
+              paddingHorizontal: 32,
+            }}
+          >
+            Pular
+          </Text>
+        </SecondaryBtn>
+      ) : null}
+
       <S.Content>
         <Carousel getCurrentIndex={getCurrentIndex} ref={carouselActions} />
 

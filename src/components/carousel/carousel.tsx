@@ -19,6 +19,7 @@ import { CarouselActions } from 'components'
 enableLegacyWebImplementation(true)
 
 import * as S from './style'
+import { SunIcon } from '@/assets/sun-icon'
 
 const data = [
   {
@@ -103,6 +104,11 @@ export const Carousel = forwardRef(
             }}
             renderItem={({ item }) => (
               <S.ContentWrapper>
+                <SunIcon
+                  style={{ alignSelf: 'center' }}
+                  color={theme.colors.yellow}
+                />
+
                 {item.title}
 
                 <Text

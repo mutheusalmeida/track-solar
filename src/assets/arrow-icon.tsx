@@ -3,10 +3,10 @@ import Svg, { SvgProps, Path } from 'react-native-svg'
 
 type ArrowIconProps = {
   color: string
-}
+} & SvgProps
 
-const ArrowIcon = ({ color, ...props }: ArrowIconProps & SvgProps) => (
-  <Svg width={25} height={17} fill="none" {...props}>
+export const ArrowIcon = ({ color, ...rest }: ArrowIconProps) => (
+  <Svg width={25} height={17} fill="none" {...rest}>
     <Path
       fill={color}
       fillRule="evenodd"
@@ -15,5 +15,3 @@ const ArrowIcon = ({ color, ...props }: ArrowIconProps & SvgProps) => (
     />
   </Svg>
 )
-
-export default ArrowIcon
