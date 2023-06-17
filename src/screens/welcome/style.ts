@@ -1,4 +1,4 @@
-import { TransparentBtn } from '@/styles'
+import { Text, TransparentBtn } from '@/styles'
 import styled from 'styled-components/native'
 
 export const Container = styled.SafeAreaView`
@@ -17,7 +17,7 @@ export const Content = styled.View`
 export const ButtonWrapper = styled.View`
   align-self: stretch;
   align-items: center;
-  gap: 24px;
+  gap: 16px;
   padding: 0 16px;
 `
 
@@ -42,4 +42,14 @@ export const CloseModal = styled(TransparentBtn)`
   top: 0;
   right: 0;
   padding: 24px;
+`
+
+export const Skip = styled(Text)`
+  text-decoration: underline solid ${({ theme }) => theme.colors.white};
+  align-self: flex-end;
+  padding-horizontal: 32px;
+`
+
+export const Help = styled(Text)`
+  text-decoration: underline solid ${({ theme }) => theme.colors.white};
 `

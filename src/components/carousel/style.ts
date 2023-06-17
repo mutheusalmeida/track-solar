@@ -10,6 +10,16 @@ export const ContentWrapper = styled.View`
   padding: 0 32px;
 `
 
-export const PaginationContainer = styled.View``
+export const PaginationContainer = styled.View`
+  padding: 0 32px;
+  gap: 6px;
+  height: 6px;
+  flex-direction: row;
+  position: relative;
+`
 
-export const PaginationItem = styled.View``
+export const PaginationItem = styled.View`
+  height: 6px;
+  min-width: 6px;
+  border-radius: 6px;
+`

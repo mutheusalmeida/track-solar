@@ -12,7 +12,7 @@ export const Container = styled.SafeAreaView`
 export const FieldWrapper = styled.View`
   align-self: stretch;
   flex-direction: column;
-  gap: 24px;
+  gap: 16px;
 `
 
 export const TextInput = styled.TextInput`

@@ -15,11 +15,11 @@ import {
 } from 'react'
 import { theme } from '@/resources/theme'
 import { CarouselActions } from 'components'
+import { SunIcon } from '@/assets/sun-icon'
 
 enableLegacyWebImplementation(true)
 
 import * as S from './style'
-import { SunIcon } from '@/assets/sun-icon'
 
 const data = [
   {
@@ -93,7 +93,7 @@ export const Carousel = forwardRef(
           <ReanimatedCarousel
             loop={false}
             width={width}
-            height={252}
+            height={350}
             data={data}
             scrollAnimationDuration={1000}
             pagingEnabled
@@ -122,19 +122,10 @@ export const Carousel = forwardRef(
             )}
           />
 
-          <S.PaginationContainer
-            style={{
-              paddingHorizontal: 32,
-              gap: 6,
-              height: 6,
-              flexDirection: 'row',
-            }}
-          >
+          <S.PaginationContainer>
             {data.map(({ id }) => (
               <S.PaginationItem
                 style={{
-                  height: 6,
-                  minWidth: 6,
                   width: Number.isInteger(activeSlide)
                     ? Math.floor(activeSlide) + 1 === id
                       ? 18
@@ -147,7 +138,6 @@ export const Carousel = forwardRef(
                       ? theme.colors.white
                       : theme.colors.cyan100
                     : theme.colors.white,
-                  borderRadius: 6,
                 }}
                 key={id}
               />

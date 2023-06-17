@@ -25,7 +25,7 @@ export const Credential = () => {
           onSubmitEditing={(e) => console.log(e.nativeEvent.text)}
         />
 
-        <Button>Entrar</Button>
+        <Button onPress={(e) => console.log(value)}>Entrar</Button>
       </S.FieldWrapper>
     </S.Container>
   )

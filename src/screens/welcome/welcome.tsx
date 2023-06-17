@@ -61,17 +61,12 @@ export const Welcome = () => {
 
       {!isLastItem ? (
         <TransparentBtn onPress={() => navigate('Credential')}>
-          <Text
+          <S.Skip
             fontSize={theme.fontSize.md20}
             fontFamily={theme.fontFamily.DMSansRegular}
-            style={{
-              textDecorationLine: 'underline',
-              alignSelf: 'flex-end',
-              paddingHorizontal: 32,
-            }}
           >
             Pular
-          </Text>
+          </S.Skip>
         </TransparentBtn>
       ) : null}
 
@@ -95,13 +90,12 @@ export const Welcome = () => {
 
           {isLastItem ? (
             <TransparentBtn onPress={() => setModalVisible(true)}>
-              <Text
+              <S.Help
                 fontSize={theme.fontSize.sm16}
                 fontFamily={theme.fontFamily.DMSansMedium}
-                style={{ textDecorationLine: 'underline' }}
               >
                 Eu não tenho uma credencial
-              </Text>
+              </S.Help>
             </TransparentBtn>
           ) : null}
         </S.ButtonWrapper>
