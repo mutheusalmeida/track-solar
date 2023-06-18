@@ -1,6 +1,6 @@
 import { TransparentBtn, Text } from '@/styles'
 import { Button } from '@/components/button'
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { theme } from '@/resources/theme'
 import { Carousel } from '@/components/carousel'
 import type { CarouselActions, RootStackParamList } from 'components'
@@ -8,6 +8,7 @@ import { NavigationProp, useNavigation } from '@react-navigation/native'
 import { Modal } from 'react-native'
 import { Linking } from 'react-native'
 import { CloseIcon } from '@/assets/close-icon'
+import { asyncStorage } from '@/services/async-storage'
 
 import * as S from './style'
 
@@ -22,6 +23,16 @@ export const Welcome = () => {
   }
 
   const isLastItem = current === carouselActions.current?.getLastIndex()
+
+  useEffect(() => {
+    ;(async () => {
+      const user = await asyncStorage.getUser()
+
+      if (user) {
+        navigate('Home')
+      }
+    })()
+  }, [])
 
   return (
     <S.Container>

@@ -15,7 +15,7 @@ export const Routes = () => {
   return (
     <NavigationContainer>
       <Navigator
-        initialRouteName="Welcome"
+        initialRouteName="Home"
         screenOptions={{
           headerTransparent: true,
         }}

@@ -19,7 +19,7 @@ const slice = createSlice({
     builder.addMatcher(
       api.endpoints.getGeneration.matchFulfilled,
       (state, { payload }) => {
-        state.data.data = payload.data
+        state.data = payload
       }
     )
   },

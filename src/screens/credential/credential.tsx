@@ -21,8 +21,8 @@ export const Credential = () => {
     if (value) {
       try {
         await generation({ dataType: 'yearly', token: value }).unwrap()
-        navigate('Home')
         await asyncStorage.setUser({ token: value })
+        navigate('Home')
       } catch (err) {
         console.log(err)
         setHideError(false)

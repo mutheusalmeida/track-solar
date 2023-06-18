@@ -22,13 +22,15 @@ export const api = createApi({
   endpoints: (build) => ({
     getGeneration: build.mutation<
       GenerationRequestType,
-      { dataType: DataType; token: string }
+      { dataType: DataType; token?: string }
     >({
       query: ({ dataType, token }) => ({
         url: `?dataType=${dataType}`,
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
+        ...(token && {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }),
       }),
     }),
   }),
