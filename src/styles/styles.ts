@@ -22,3 +22,10 @@ export const Text = styled.Text<TextType>`
 export const TransparentBtn = styled.TouchableOpacity.attrs(() => ({
   activeOpacity: 0.6,
 }))``
+
+export const TabButton = styled(TransparentBtn)`
+  flex-direction: row;
+  gap: 10px;
+  width: max-content;
+  align-items: center;
+`

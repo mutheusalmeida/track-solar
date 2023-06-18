@@ -6,9 +6,9 @@ import { useGetGenerationMutation } from '@/services/api'
 import { Text } from '@/styles'
 import type { RootStackParamList } from 'components'
 import { NavigationProp, useNavigation } from '@react-navigation/native'
+import { asyncStorage } from '@/services/async-storage'
 
 import * as S from './style'
-import { asyncStorage } from '@/services/async-storage'
 
 export const Credential = () => {
   const theme = useTheme()
@@ -22,7 +22,7 @@ export const Credential = () => {
       try {
         await generation({ dataType: 'yearly', token: value }).unwrap()
         await asyncStorage.setUser({ token: value })
-        navigate('Home')
+        navigate('TabRoutes')
       } catch (err) {
         console.log(err)
         setHideError(false)

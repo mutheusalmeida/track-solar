@@ -6,10 +6,10 @@ import { StatusBar } from 'expo-status-bar'
 import styled, { ThemeProvider } from 'styled-components/native'
 import * as SplashScreen from 'expo-splash-screen'
 import { useCallback } from 'react'
-import { Routes } from '@/routes'
 import { getStatusBarHeight } from '@/utils'
 import { Provider } from 'react-redux'
 import { store } from '@/services/store'
+import { StackRoutes } from '@/routes/stack-routes'
 
 SplashScreen.preventAutoHideAsync()
 
@@ -42,7 +42,7 @@ export default function App() {
         <Container onLayout={onLayoutRootView}>
           <StatusBar style="light" />
 
-          <Routes />
+          <StackRoutes />
         </Container>
       </ThemeProvider>
     </Provider>

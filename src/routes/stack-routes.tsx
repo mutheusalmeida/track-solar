@@ -7,15 +7,16 @@ import { Welcome } from '@/screens/welcome'
 import { Credential } from '@/screens/credential'
 import type { RootStackParamList } from 'components'
 import { StackHeader } from '@/components/stack-header'
-import { Home } from '@/screens/home'
+import { TabRoutes } from './tab-routes'
+import { Overview } from '@/screens/overview'
 
 const { Navigator, Screen } = createNativeStackNavigator<RootStackParamList>()
 
-export const Routes = () => {
+export const StackRoutes = () => {
   return (
     <NavigationContainer>
       <Navigator
-        initialRouteName="Home"
+        initialRouteName="TabRoutes"
         screenOptions={{
           headerTransparent: true,
         }}
@@ -36,7 +37,23 @@ export const Routes = () => {
           component={Credential}
         />
 
-        <Screen name="Home" options={{ headerShown: false }} component={Home} />
+        <Screen
+          name="Overview"
+          options={{ headerShown: false }}
+          component={Overview}
+        />
+
+        <Screen
+          name="TabRoutes"
+          options={{ headerShown: false }}
+          component={TabRoutes}
+        />
+
+        <Screen
+          name="Analytics"
+          options={{ headerShown: false }}
+          component={Overview}
+        />
       </Navigator>
     </NavigationContainer>
   )

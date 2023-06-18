@@ -13,7 +13,7 @@ import { formatTime } from '@/utils'
 
 import * as S from './style'
 
-export const Home = () => {
+export const Overview = () => {
   const data = useTypedSelector<GenerationRequestType>(selectData)
   const [generation] = useGetGenerationMutation()
   const theme = useTheme()

@@ -29,7 +29,7 @@ export const Welcome = () => {
       const user = await asyncStorage.getUser()
 
       if (user) {
-        navigate('Home')
+        navigate('TabRoutes')
       }
     })()
   }, [])
