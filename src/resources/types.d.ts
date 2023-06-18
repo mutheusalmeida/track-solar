@@ -22,6 +22,10 @@ declare module 'components' {
 
   export type DataType = 'hourly' | 'daily' | 'monthly' | 'yearly'
 
+  export type UserType = {
+    token: string
+  }
+
   export type GenerationRequestType = {
     data: {
       data_type: DataType
