@@ -3,7 +3,7 @@ import { useTypedSelector } from '@/hooks/store'
 import type { GenerationRequestType } from 'components'
 import { selectData } from '@/services/generation-slice'
 import { useGetGenerationMutation } from '@/services/api'
-import { useEffect } from 'react'
+import { useEffect, useMemo } from 'react'
 import { useTheme } from 'styled-components/native'
 import { SettingsIcon } from '@/assets/settings-icon'
 import { PercentageIcon } from '@/assets/percentage-icon'
@@ -11,11 +11,41 @@ import { TreeIcon } from '@/assets/tree-icon'
 import { GlobeIcon } from '@/assets/globe-icon'
 
 import * as S from './style'
+import { formatTime } from '@/utils'
 
 export const Home = () => {
   const data = useTypedSelector<GenerationRequestType>(selectData)
   const [generation] = useGetGenerationMutation()
   const theme = useTheme()
+
+  const today = useMemo(
+    () => ({
+      expected: 113.325,
+      generation: [
+        {
+          id: 1,
+          label: formatTime('08:00:00'),
+          value: 0.4,
+        },
+        {
+          id: 2,
+          label: formatTime('11:00:00'),
+          value: 12.5,
+        },
+        {
+          id: 3,
+          label: formatTime('14:00:00'),
+          value: 12,
+        },
+        {
+          id: 4,
+          label: formatTime('17:00:00'),
+          value: 2.2,
+        },
+      ],
+    }),
+    []
+  )
 
   let content = (
     <>
@@ -120,24 +150,32 @@ export const Home = () => {
           </Text>
 
           <S.HoursContainer>
-            <S.HoursItem>
-              <S.VolumeBar>
-                <S.VolumeFilled>
-                  <Text
-                    fontSize={theme.fontSize.xxxs10}
-                    fontFamily={theme.fontFamily.DMSansMedium}
-                    color={theme.colors.cyan300}
-                    lineHeight={13}
+            {today.generation.map((hour) => (
+              <S.HoursItem key={hour.id}>
+                <S.VolumeBar>
+                  <S.VolumeFilled
+                    filled={
+                      (hour.value /
+                        (today.expected / today.generation.length)) *
+                      100
+                    }
                   >
-                    0.4kWh
-                  </Text>
-                </S.VolumeFilled>
-              </S.VolumeBar>
+                    <Text
+                      fontSize={theme.fontSize.xxxs10}
+                      fontFamily={theme.fontFamily.DMSansMedium}
+                      color={theme.colors.cyan300}
+                      lineHeight={13}
+                    >
+                      {hour.value}kWh
+                    </Text>
+                  </S.VolumeFilled>
+                </S.VolumeBar>
 
-              <Text fontSize={theme.fontSize.xxxs10} lineHeight={13}>
-                08:00
-              </Text>
-            </S.HoursItem>
+                <Text fontSize={theme.fontSize.xxxs10} lineHeight={13}>
+                  {hour.label}
+                </Text>
+              </S.HoursItem>
+            ))}
           </S.HoursContainer>
         </S.Section>
       </S.Content>

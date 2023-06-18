@@ -1,6 +1,10 @@
 import { Text } from '@/styles'
 import styled from 'styled-components/native'
 
+type VolumeFilledType = {
+  filled: number
+}
+
 export const Container = styled.SafeAreaView`
   flex: 1;
   gap: 44px;
@@ -64,9 +68,9 @@ export const VolumeBar = styled.View`
   justify-content: flex-end;
 `
 
-export const VolumeFilled = styled.View`
+export const VolumeFilled = styled.View<VolumeFilledType>`
   background-color: ${({ theme }) => theme.colors.yellow};
-  height: 26px;
+  height: ${({ filled }) => filled}px;
   align-items: center;
   padding: 4px;
 `
