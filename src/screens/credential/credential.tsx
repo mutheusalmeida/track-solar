@@ -2,26 +2,26 @@ import { Logo } from '@/assets/logo'
 import { Button } from '@/components/button'
 import { useTheme } from 'styled-components/native'
 import { useState } from 'react'
+import { useGetGenerationMutation } from '@/services/api'
+import { Text } from '@/styles'
 
 import * as S from './style'
 
 export const Credential = () => {
   const theme = useTheme()
   const [value, setValue] = useState('')
+  const [hideError, setHideError] = useState(false)
+  const [generation, { isLoading, error, isError }] = useGetGenerationMutation()
 
   const onSubmit = async () => {
-    const data = await fetch(
-      'https://y-plants-api.bravedesert-7b0b5672.westus2.azurecontainerapps.io/plant/generation/test-2023?dataType=yearly',
-      {
-        headers: {
-          Authorization: 'Bearer HeDKyixt_yMhR4TOvL4HNktaOxga-mgLkUcF',
-          'Content-Type': 'application/json',
-        },
+    if (value) {
+      try {
+        await generation({ dataType: 'yearly', token: value }).unwrap()
+      } catch (err) {
+        console.log(err)
+        setHideError(false)
       }
-    )
-    const res = await data.json()
-
-    console.log(res)
+    }
   }
 
   return (
@@ -35,12 +35,24 @@ export const Credential = () => {
           placeholderTextColor={theme.colors.cyan200}
           selectionColor={theme.colors.cyan200}
           inputMode="text"
-          onChangeText={setValue}
+          onChangeText={(text: string) => {
+            setValue(text)
+            setHideError(true)
+          }}
           value={value}
           onSubmitEditing={onSubmit}
         />
 
         <Button onPress={onSubmit}>Entrar</Button>
+
+        {isError && !hideError ? (
+          <Text
+            fontFamily={theme.fontFamily.DMSansMedium}
+            fontSize={theme.fontSize.sm16}
+          >
+            Oh, não! Aconteceu um erro.
+          </Text>
+        ) : null}
       </S.FieldWrapper>
     </S.Container>
   )

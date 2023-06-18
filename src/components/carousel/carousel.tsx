@@ -13,7 +13,7 @@ import {
   useState,
 } from 'react'
 import { theme } from '@/resources/theme'
-import { CarouselActions } from 'components'
+import type { CarouselActions } from 'components'
 import { SunIcon } from '@/assets/sun-icon'
 
 import * as S from './style'

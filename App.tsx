@@ -8,6 +8,8 @@ import * as SplashScreen from 'expo-splash-screen'
 import { useCallback } from 'react'
 import { Routes } from '@/routes'
 import { getStatusBarHeight } from '@/utils'
+import { Provider } from 'react-redux'
+import { store } from '@/services/store'
 
 SplashScreen.preventAutoHideAsync()
 
@@ -35,12 +37,14 @@ export default function App() {
   }
 
   return (
-    <ThemeProvider theme={theme}>
-      <Container onLayout={onLayoutRootView}>
-        <StatusBar style="light" />
+    <Provider store={store}>
+      <ThemeProvider theme={theme}>
+        <Container onLayout={onLayoutRootView}>
+          <StatusBar style="light" />
 
-        <Routes />
-      </Container>
-    </ThemeProvider>
+          <Routes />
+        </Container>
+      </ThemeProvider>
+    </Provider>
   )
 }

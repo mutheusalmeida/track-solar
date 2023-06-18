@@ -5,7 +5,7 @@ import {
 } from '@react-navigation/native-stack'
 import { Welcome } from '@/screens/welcome'
 import { Credential } from '@/screens/credential'
-import { RootStackParamList } from 'components'
+import type { RootStackParamList } from 'components'
 import { StackHeader } from '@/components/stack-header'
 import { Home } from '@/screens/home'
 

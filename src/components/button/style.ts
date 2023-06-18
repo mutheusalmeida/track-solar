@@ -1,4 +1,4 @@
-import { BaseButtonType } from 'components'
+import type { BaseButtonType } from 'components'
 import styled from 'styled-components/native'
 
 type ButtonType = BaseButtonType

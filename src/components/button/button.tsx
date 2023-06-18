@@ -1,6 +1,6 @@
 import { Text } from '@/styles'
 import { useTheme } from 'styled-components/native'
-import { BaseButtonType } from 'components'
+import type { BaseButtonType } from 'components'
 import { ArrowIcon } from '@/assets/arrow-icon'
 
 import * as S from './style'
