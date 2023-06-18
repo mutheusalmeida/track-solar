@@ -9,14 +9,56 @@ import { SettingsIcon } from '@/assets/settings-icon'
 import { PercentageIcon } from '@/assets/percentage-icon'
 import { TreeIcon } from '@/assets/tree-icon'
 import { GlobeIcon } from '@/assets/globe-icon'
+import { formatTime } from '@/utils'
 
 import * as S from './style'
-import { formatTime } from '@/utils'
+
+type BenefitsData = {
+  key: string
+  value: number
+  label: string
+}
 
 export const Home = () => {
   const data = useTypedSelector<GenerationRequestType>(selectData)
   const [generation] = useGetGenerationMutation()
   const theme = useTheme()
+
+  const totals = {
+    kwh: 72,
+    percentage: 83.53,
+    trees: 0.04,
+    co2: 8.96,
+  }
+
+  const benefitsLabel = {
+    percentage: 'Capac. Usada',
+    trees: 'Árvores Salvas',
+    co2: 'C02 Evitado',
+  }
+
+  const benefitsIcons = {
+    percentage: <PercentageIcon width={66} percentage={48} />,
+    trees: <TreeIcon />,
+    co2: <GlobeIcon />,
+  }
+
+  const benefitsUnit = {
+    percentage: '%',
+    co2: ' kg',
+  }
+
+  let benefits = Object.entries(totals).map(([key, value]) => ({ key, value }))
+  benefits = benefits.filter((benefit) => benefit.key !== 'kwh')
+  const benefitsData = benefits.map((benefit) => ({
+    ...benefit,
+    value: benefitsUnit[benefit.key as keyof typeof benefitsUnit]
+      ? Math.floor(benefit.value) +
+        benefitsUnit[benefit.key as keyof typeof benefitsUnit]
+      : Math.floor(benefit.value),
+    label: benefitsLabel[benefit.key as keyof typeof benefitsLabel],
+    icon: benefitsIcons[benefit.key as keyof typeof benefitsIcons],
+  }))
 
   const today = useMemo(
     () => ({
@@ -95,53 +137,23 @@ export const Home = () => {
         </S.Section>
 
         <S.BenefitsSection>
-          <S.BenefitsItem>
-            <PercentageIcon width={66} percentage={48} />
+          {benefitsData.map((benefit) => (
+            <S.BenefitsItem key={benefit.key}>
+              {benefit.icon}
 
-            <Text fontSize={theme.fontSize.xxs12} lineHeight={16}>
-              48%
-            </Text>
+              <Text fontSize={theme.fontSize.xxs12} lineHeight={16}>
+                {benefit.value}
+              </Text>
 
-            <Text
-              fontSize={theme.fontSize.xxxs10}
-              color={theme.colors.cyan100}
-              lineHeight={13}
-            >
-              Capac. Usada
-            </Text>
-          </S.BenefitsItem>
-
-          <S.BenefitsItem>
-            <TreeIcon />
-
-            <Text fontSize={theme.fontSize.xxs12} lineHeight={16}>
-              49
-            </Text>
-
-            <Text
-              fontSize={theme.fontSize.xxxs10}
-              color={theme.colors.cyan100}
-              lineHeight={13}
-            >
-              Árvores Salvas
-            </Text>
-          </S.BenefitsItem>
-
-          <S.BenefitsItem>
-            <GlobeIcon />
-
-            <Text fontSize={theme.fontSize.xxs12} lineHeight={16}>
-              12.271 kg
-            </Text>
-
-            <Text
-              fontSize={theme.fontSize.xxxs10}
-              color={theme.colors.cyan100}
-              lineHeight={13}
-            >
-              C02 Evitado
-            </Text>
-          </S.BenefitsItem>
+              <Text
+                fontSize={theme.fontSize.xxxs10}
+                color={theme.colors.cyan100}
+                lineHeight={13}
+              >
+                {benefit.label}
+              </Text>
+            </S.BenefitsItem>
+          ))}
         </S.BenefitsSection>
 
         <S.Section>
