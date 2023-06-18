@@ -1,7 +1,7 @@
 import { AnalyticsIcon } from '@/assets/analytics-icon'
 import { HomeIcon } from '@/assets/home-icon'
 import { Overview } from '@/screens/overview'
-import { TabButton, Text, TransparentBtn } from '@/styles'
+import { TabButton, Text } from '@/styles'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import styled, { useTheme } from 'styled-components/native'
 
@@ -58,7 +58,7 @@ export const TabRoutes = (): JSX.Element => {
                 color={focused ? theme.colors.white : theme.colors.cyan100}
               />
             ),
-          tabBarLabel: ({ focused, children, color }) => (
+          tabBarLabel: ({ focused, color }) => (
             <Text
               fontFamily={
                 focused

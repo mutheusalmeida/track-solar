@@ -54,7 +54,7 @@ const data = [
         funciona?
       </S.Title>
     ),
-    desc: 'Copie e cole o sua credencial no campo fornecido e obtenha os dados mais relevantes na palma da sua mão.',
+    desc: 'Copie e cole a sua credencial no campo fornecido e obtenha os dados mais relevantes na palma da sua mão.',
   },
 ]
 

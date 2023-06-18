@@ -16,7 +16,7 @@ export const StackRoutes = () => {
   return (
     <NavigationContainer>
       <Navigator
-        initialRouteName="TabRoutes"
+        initialRouteName="Welcome"
         screenOptions={{
           headerTransparent: true,
         }}
