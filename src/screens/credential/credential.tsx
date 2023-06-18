@@ -14,7 +14,7 @@ export const Credential = () => {
   const theme = useTheme()
   const [value, setValue] = useState('')
   const [hideError, setHideError] = useState(false)
-  const [generation, { isLoading, error, isError }] = useGetGenerationMutation()
+  const [generation, { isLoading, isError }] = useGetGenerationMutation()
   const { navigate } = useNavigation<NavigationProp<RootStackParamList>>()
 
   const onSubmit = async () => {
@@ -49,7 +49,7 @@ export const Credential = () => {
           onSubmitEditing={onSubmit}
         />
 
-        <Button onPress={onSubmit}>Entrar</Button>
+        <Button onPress={onSubmit}>{isLoading ? <>...</> : <>Entrar</>}</Button>
 
         {isError && !hideError ? (
           <Text
