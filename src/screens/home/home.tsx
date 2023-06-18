@@ -45,7 +45,7 @@ export const Home = () => {
       </S.Header>
 
       <S.Content>
-        <S.TotalSection>
+        <S.Section>
           <Text lineHeight={26} fontSize={theme.fontSize.md20}>
             Total
           </Text>
@@ -62,7 +62,7 @@ export const Home = () => {
 
             <S.Unit fontSize={theme.fontSize.md20}>kWh</S.Unit>
           </S.TotalWrapper>
-        </S.TotalSection>
+        </S.Section>
 
         <S.BenefitsSection>
           <S.BenefitsItem>
@@ -113,6 +113,33 @@ export const Home = () => {
             </Text>
           </S.BenefitsItem>
         </S.BenefitsSection>
+
+        <S.Section>
+          <Text lineHeight={26} fontSize={theme.fontSize.md20}>
+            Hoje
+          </Text>
+
+          <S.HoursContainer>
+            <S.HoursItem>
+              <S.VolumeBar>
+                <S.VolumeFilled>
+                  <Text
+                    fontSize={theme.fontSize.xxxs10}
+                    fontFamily={theme.fontFamily.DMSansMedium}
+                    color={theme.colors.cyan300}
+                    lineHeight={13}
+                  >
+                    0.4kWh
+                  </Text>
+                </S.VolumeFilled>
+              </S.VolumeBar>
+
+              <Text fontSize={theme.fontSize.xxxs10} lineHeight={13}>
+                08:00
+              </Text>
+            </S.HoursItem>
+          </S.HoursContainer>
+        </S.Section>
       </S.Content>
     </>
   )
@@ -160,7 +187,7 @@ export const Home = () => {
         </S.Header>
 
         <S.Content>
-          <S.TotalSection>
+          <S.Section>
             <Text>Total</Text>
 
             <Text
@@ -169,7 +196,7 @@ export const Home = () => {
             >
               Total
             </Text>
-          </S.TotalSection>
+          </S.Section>
         </S.Content>
       </>
     )

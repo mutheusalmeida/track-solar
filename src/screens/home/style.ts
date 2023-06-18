@@ -34,7 +34,7 @@ export const BenefitsItem = styled.View`
   gap: 10px;
 `
 
-export const TotalSection = styled.View`
+export const Section = styled.View`
   gap: 16px;
 `
 
@@ -46,4 +46,27 @@ export const TotalWrapper = styled.View`
 
 export const Unit = styled(Text)`
   margin-top: 13px;
+`
+
+export const HoursContainer = styled(BenefitsSection)``
+
+export const HoursItem = styled.View`
+  gap: 12px;
+  align-items: center;
+`
+
+export const VolumeBar = styled.View`
+  background-color: ${({ theme }) => theme.colors.cyan};
+  border-radius: 10px;
+  overflow: hidden;
+  width: 56px;
+  height: 138px;
+  justify-content: flex-end;
+`
+
+export const VolumeFilled = styled.View`
+  background-color: ${({ theme }) => theme.colors.yellow};
+  height: 26px;
+  align-items: center;
+  padding: 4px;
 `
