@@ -13,12 +13,6 @@ import { formatTime } from '@/utils'
 
 import * as S from './style'
 
-type BenefitsData = {
-  key: string
-  value: number
-  label: string
-}
-
 export const Home = () => {
   const data = useTypedSelector<GenerationRequestType>(selectData)
   const [generation] = useGetGenerationMutation()
