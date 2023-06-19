@@ -1,8 +1,6 @@
 import { Text, TransparentBtn } from '@/styles'
 import { useTypedSelector } from '@/hooks/store'
-import type { GenerationRequestType } from 'components'
 import { selectData } from '@/services/generation-slice'
-import { useGetGenerationMutation } from '@/services/api'
 import { useEffect, useMemo } from 'react'
 import { useTheme } from 'styled-components/native'
 import { SettingsIcon } from '@/assets/settings-icon'
@@ -10,12 +8,13 @@ import { PercentageIcon } from '@/assets/percentage-icon'
 import { TreeIcon } from '@/assets/tree-icon'
 import { GlobeIcon } from '@/assets/globe-icon'
 import { formatNumber, formatTime } from '@/utils'
+import { useLazyGetYearlyQuery } from '@/services/api'
 
 import * as S from './style'
 
 export const Overview = () => {
-  const data = useTypedSelector<GenerationRequestType>(selectData)
-  const [generation] = useGetGenerationMutation()
+  const data = useTypedSelector(selectData)
+  const [getYearly] = useLazyGetYearlyQuery()
   const theme = useTheme()
 
   const benefitsLabel = {
@@ -69,17 +68,15 @@ export const Overview = () => {
   let content = <Text>Loading...</Text>
 
   useEffect(() => {
-    if (!data) {
-      const getData = async () => {
-        try {
-          await generation({ dataType: 'yearly' }).unwrap()
-        } catch (err) {
-          console.log(err)
-        }
+    const getData = async () => {
+      try {
+        await getYearly().unwrap()
+      } catch (err) {
+        console.log(err)
       }
-
-      getData()
     }
+
+    getData()
   }, [])
 
   if (data) {

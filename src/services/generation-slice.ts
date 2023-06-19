@@ -17,7 +17,7 @@ const slice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder.addMatcher(
-      api.endpoints.getGeneration.matchFulfilled,
+      api.endpoints.getYearly.matchFulfilled,
       (state, { payload }) => {
         state.data = payload
       }

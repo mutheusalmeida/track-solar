@@ -1,6 +1,6 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import { asyncStorage } from './async-storage'
-import type { DataType, GenerationRequestType } from 'components'
+import type { GenerationRequestType } from 'components'
 
 export const api = createApi({
   baseQuery: fetchBaseQuery({
@@ -20,12 +20,9 @@ export const api = createApi({
     },
   }),
   endpoints: (build) => ({
-    getGeneration: build.mutation<
-      GenerationRequestType,
-      { dataType: DataType; token?: string }
-    >({
-      query: ({ dataType, token }) => ({
-        url: `?dataType=${dataType}`,
+    getYearly: build.query<GenerationRequestType, string | void>({
+      query: (token) => ({
+        url: `?dataType=yearly`,
         ...(token && {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -36,4 +33,4 @@ export const api = createApi({
   }),
 })
 
-export const { useGetGenerationMutation } = api
+export const { useLazyGetYearlyQuery } = api
