@@ -83,116 +83,13 @@ export const Overview = () => {
     []
   )
 
-  let content = (
-    <>
-      <S.Header>
-        <S.User>
-          <Text
-            fontFamily={theme.fontFamily.DMSerifTextRegular}
-            fontSize={theme.fontSize.xs14}
-            color={theme.colors.cyan100}
-            lineHeight={21}
-          >
-            Bem vindo de volta,
-          </Text>
-
-          <Text
-            fontFamily={theme.fontFamily.DMSerifTextRegular}
-            fontSize={theme.fontSize.md20}
-            lineHeight={30}
-          >
-            Yellot
-          </Text>
-        </S.User>
-
-        <TransparentBtn>
-          <SettingsIcon />
-        </TransparentBtn>
-      </S.Header>
-
-      <S.Content>
-        <S.Section>
-          <Text lineHeight={26} fontSize={theme.fontSize.md20}>
-            Total
-          </Text>
-
-          <S.TotalWrapper>
-            <Text
-              fontFamily={theme.fontFamily.DMSerifTextRegular}
-              fontSize={theme.fontSize.xl48}
-              color={theme.colors.yellow}
-              lineHeight={47}
-            >
-              98.646
-            </Text>
-
-            <S.Unit fontSize={theme.fontSize.md20}>kWh</S.Unit>
-          </S.TotalWrapper>
-        </S.Section>
-
-        <S.BenefitsSection>
-          {benefitsData.map((benefit) => (
-            <S.BenefitsItem key={benefit.key}>
-              {benefit.icon}
-
-              <Text fontSize={theme.fontSize.xxs12} lineHeight={16}>
-                {benefit.value}
-              </Text>
-
-              <Text
-                fontSize={theme.fontSize.xxxs10}
-                color={theme.colors.cyan100}
-                lineHeight={13}
-              >
-                {benefit.label}
-              </Text>
-            </S.BenefitsItem>
-          ))}
-        </S.BenefitsSection>
-
-        <S.Section>
-          <Text lineHeight={26} fontSize={theme.fontSize.md20}>
-            Hoje
-          </Text>
-
-          <S.HoursContainer>
-            {today.generation.map((hour) => (
-              <S.HoursItem key={hour.id}>
-                <S.VolumeBar>
-                  <S.VolumeFilled
-                    filled={
-                      (hour.value /
-                        (today.expected / today.generation.length)) *
-                      100
-                    }
-                  >
-                    <Text
-                      fontSize={theme.fontSize.xxxs10}
-                      fontFamily={theme.fontFamily.DMSansMedium}
-                      color={theme.colors.cyan300}
-                      lineHeight={13}
-                    >
-                      {hour.value}kWh
-                    </Text>
-                  </S.VolumeFilled>
-                </S.VolumeBar>
-
-                <Text fontSize={theme.fontSize.xxxs10} lineHeight={13}>
-                  {hour.label}
-                </Text>
-              </S.HoursItem>
-            ))}
-          </S.HoursContainer>
-        </S.Section>
-      </S.Content>
-    </>
-  )
+  let content = <Text>Loading...</Text>
 
   useEffect(() => {
     if (!data) {
       const getData = async () => {
         try {
-          await generation({ dataType: 'yearly' }).unwrap()
+          await generation({ dataType: 'daily' }).unwrap()
         } catch (err) {
           console.log(err)
         }
@@ -232,14 +129,77 @@ export const Overview = () => {
 
         <S.Content>
           <S.Section>
-            <Text>Total</Text>
-
-            <Text
-              fontFamily={theme.fontFamily.DMSerifTextRegular}
-              fontSize={theme.fontSize.xl48}
-            >
+            <Text lineHeight={26} fontSize={theme.fontSize.md20}>
               Total
             </Text>
+
+            <S.TotalWrapper>
+              <Text
+                fontFamily={theme.fontFamily.DMSerifTextRegular}
+                fontSize={theme.fontSize.xl48}
+                color={theme.colors.yellow}
+                lineHeight={47}
+              >
+                98.646
+              </Text>
+
+              <S.Unit fontSize={theme.fontSize.md20}>kWh</S.Unit>
+            </S.TotalWrapper>
+          </S.Section>
+
+          <S.BenefitsSection>
+            {benefitsData.map((benefit) => (
+              <S.BenefitsItem key={benefit.key}>
+                {benefit.icon}
+
+                <Text fontSize={theme.fontSize.xxs12} lineHeight={16}>
+                  {benefit.value}
+                </Text>
+
+                <Text
+                  fontSize={theme.fontSize.xxxs10}
+                  color={theme.colors.cyan100}
+                  lineHeight={13}
+                >
+                  {benefit.label}
+                </Text>
+              </S.BenefitsItem>
+            ))}
+          </S.BenefitsSection>
+
+          <S.Section>
+            <Text lineHeight={26} fontSize={theme.fontSize.md20}>
+              Hoje
+            </Text>
+
+            <S.HoursContainer>
+              {today.generation.map((hour) => (
+                <S.HoursItem key={hour.id}>
+                  <S.VolumeBar>
+                    <S.VolumeFilled
+                      filled={
+                        (hour.value /
+                          (today.expected / today.generation.length)) *
+                        100
+                      }
+                    >
+                      <Text
+                        fontSize={theme.fontSize.xxxs10}
+                        fontFamily={theme.fontFamily.DMSansMedium}
+                        color={theme.colors.cyan300}
+                        lineHeight={13}
+                      >
+                        {hour.value}kWh
+                      </Text>
+                    </S.VolumeFilled>
+                  </S.VolumeBar>
+
+                  <Text fontSize={theme.fontSize.xxxs10} lineHeight={13}>
+                    {hour.label}
+                  </Text>
+                </S.HoursItem>
+              ))}
+            </S.HoursContainer>
           </S.Section>
         </S.Content>
       </>

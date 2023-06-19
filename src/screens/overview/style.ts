@@ -34,7 +34,7 @@ export const BenefitsSection = styled.View`
 
 export const BenefitsItem = styled.View`
   align-items: center;
-  width: max-content;
+  width: 76px;
   gap: 10px;
 `
 
@@ -43,7 +43,6 @@ export const Section = styled.View`
 `
 
 export const TotalWrapper = styled.View`
-  width: max-content;
   flex-direction: row;
   gap: 10px;
 `

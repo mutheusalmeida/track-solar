@@ -26,6 +26,5 @@ export const TransparentBtn = styled.TouchableOpacity.attrs(() => ({
 export const TabButton = styled(TransparentBtn)`
   flex-direction: row;
   gap: 10px;
-  width: max-content;
   align-items: center;
 `
