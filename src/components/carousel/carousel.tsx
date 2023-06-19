@@ -26,7 +26,7 @@ const data = [
         fontFamily={theme.fontFamily.DMSerifTextRegular}
         fontSize={theme.fontSize.lg36}
         lineHeight={44}
-        style={{ width: 296 }}
+        style={{ width: 310 }}
       >
         Quanto a sua usina gerou hoje?
       </S.Title>
@@ -97,7 +97,7 @@ export const Carousel = forwardRef(
             ref={carouselRef}
             onProgressChange={(_, absoluteProgress) => {
               setActiveSlide(absoluteProgress)
-              getCurrentIndex(carouselRef.current.getCurrentIndex())
+              getCurrentIndex(carouselRef.current?.getCurrentIndex())
             }}
             renderItem={({ item }) => (
               <S.ContentWrapper>

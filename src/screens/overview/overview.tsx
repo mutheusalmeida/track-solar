@@ -9,6 +9,7 @@ import { TreeIcon } from '@/assets/tree-icon'
 import { GlobeIcon } from '@/assets/globe-icon'
 import { formatNumber, formatTime } from '@/utils'
 import { useGetHourlyQuery, useLazyGetYearlyQuery } from '@/services/api'
+import AsyncStorage from '@react-native-async-storage/async-storage'
 
 import * as S from './style'
 
@@ -37,7 +38,11 @@ export const Overview = () => {
     co2: ' kg',
   }
 
-  let content = <Text>Loading...</Text>
+  let content = (
+    <S.Container style={{ alignItems: 'center', justifyContent: 'center' }}>
+      <Text>Loading...</Text>
+    </S.Container>
+  )
 
   useEffect(() => {
     const getData = async () => {

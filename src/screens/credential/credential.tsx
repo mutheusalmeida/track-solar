@@ -15,7 +15,8 @@ export const Credential = () => {
   const [value, setValue] = useState('')
   const [hideError, setHideError] = useState(false)
   const [getYearly, { isLoading, isError }] = useLazyGetYearlyQuery()
-  const { navigate } = useNavigation<NavigationProp<RootStackParamList>>()
+  const { navigate, reset } =
+    useNavigation<NavigationProp<RootStackParamList>>()
 
   const onSubmit = async () => {
     if (value) {
@@ -23,6 +24,10 @@ export const Credential = () => {
         await getYearly(value).unwrap()
         await asyncStorage.setUser({ token: value })
         navigate('TabRoutes')
+        reset({
+          index: 0,
+          routes: [{ name: 'TabRoutes' }],
+        })
       } catch (err) {
         console.log(err)
         setHideError(false)
@@ -49,7 +54,9 @@ export const Credential = () => {
           onSubmitEditing={onSubmit}
         />
 
-        <Button onPress={onSubmit}>{isLoading ? <>...</> : <>Entrar</>}</Button>
+        <Button isLoading={isLoading} onPress={onSubmit}>
+          {isLoading ? <>Loading...</> : <>Entrar</>}
+        </Button>
 
         {isError && !hideError ? (
           <Text

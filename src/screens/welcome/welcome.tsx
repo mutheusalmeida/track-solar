@@ -16,7 +16,8 @@ export const Welcome = () => {
   const carouselActions = useRef<CarouselActions>()
   const [current, setCurrent] = useState(0)
   const [modalVisible, setModalVisible] = useState(false)
-  const { navigate } = useNavigation<NavigationProp<RootStackParamList>>()
+  const { navigate, reset } =
+    useNavigation<NavigationProp<RootStackParamList>>()
 
   const getCurrentIndex = (current: number) => {
     setCurrent(current)
@@ -30,6 +31,10 @@ export const Welcome = () => {
 
       if (user) {
         navigate('TabRoutes')
+        reset({
+          index: 0,
+          routes: [{ name: 'TabRoutes' }],
+        })
       }
     }
 

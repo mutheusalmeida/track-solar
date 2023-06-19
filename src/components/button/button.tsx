@@ -5,7 +5,7 @@ import { ArrowIcon } from '@/assets/arrow-icon'
 
 import * as S from './style'
 
-type ButtonProps = BaseButtonType
+type ButtonProps = { isLoading?: boolean } & BaseButtonType
 
 export const Button = ({
   backgroundColor,
@@ -14,6 +14,7 @@ export const Button = ({
   height,
   width,
   children,
+  isLoading,
   ...rest
 }: ButtonProps) => {
   const theme = useTheme()
@@ -25,6 +26,7 @@ export const Button = ({
       borderRadius={borderRadius}
       height={height}
       width={width}
+      disabled={isLoading}
       {...rest}
     >
       <Text color={theme.colors.cyan300}>{children}</Text>
