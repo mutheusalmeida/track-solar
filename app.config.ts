@@ -2,6 +2,12 @@ import { version } from './package.json'
 
 module.exports = {
   expo: {
+    updates: {
+      url: 'https://u.expo.dev/e490c515-a5f2-487e-82a4-aaa7efb8bf4b',
+    },
+    runtimeVersion: {
+      policy: 'sdkVersion',
+    },
     extra: {
       eas: {
         projectId: 'e490c515-a5f2-487e-82a4-aaa7efb8bf4b',
