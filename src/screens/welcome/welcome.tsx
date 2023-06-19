@@ -25,13 +25,15 @@ export const Welcome = () => {
   const isLastItem = current === carouselActions.current?.getLastIndex()
 
   useEffect(() => {
-    ;(async () => {
+    const getUser = async () => {
       const user = await asyncStorage.getUser()
 
       if (user) {
         navigate('TabRoutes')
       }
-    })()
+    }
+
+    getUser()
   }, [])
 
   return (
