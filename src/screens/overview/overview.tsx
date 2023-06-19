@@ -9,7 +9,6 @@ import { TreeIcon } from '@/assets/tree-icon'
 import { GlobeIcon } from '@/assets/globe-icon'
 import { formatNumber, formatTime } from '@/utils'
 import { useGetHourlyQuery, useLazyGetYearlyQuery } from '@/services/api'
-import AsyncStorage from '@react-native-async-storage/async-storage'
 
 import * as S from './style'
 
