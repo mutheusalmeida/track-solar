@@ -58,6 +58,7 @@ export const Overview = () => {
   if (data && data.general && data.today) {
     const todayLabels = ['08:00:00', '11:00:00', '14:00:00', '17:00:00']
 
+    // get today data
     const todayData = {
       expected: data.today.expected[0],
       generation: data.today.generation
