@@ -1,14 +1,14 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { GenerationRequestType } from 'components'
+import type { GenerationDataType, GenerationRequestType } from 'components'
 import { api } from './api'
 import type { RootState } from './store'
 
 type GenerationState = {
-  data: GenerationRequestType | null
+  data: { general: GenerationDataType; today: GenerationDataType }
 }
 
 const initialState: GenerationState = {
-  data: null,
+  data: { general: null, today: null },
 }
 
 const slice = createSlice({
@@ -19,7 +19,13 @@ const slice = createSlice({
     builder.addMatcher(
       api.endpoints.getYearly.matchFulfilled,
       (state, { payload }) => {
-        state.data = payload
+        state.data.general = payload.data
+      }
+    )
+    builder.addMatcher(
+      api.endpoints.getHourly.matchFulfilled,
+      (state, { payload }) => {
+        state.data.today = payload.data
       }
     )
   },

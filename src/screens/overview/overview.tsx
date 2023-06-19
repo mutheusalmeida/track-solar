@@ -1,20 +1,21 @@
 import { Text, TransparentBtn } from '@/styles'
 import { useTypedSelector } from '@/hooks/store'
 import { selectData } from '@/services/generation-slice'
-import { useEffect, useMemo } from 'react'
+import { useEffect } from 'react'
 import { useTheme } from 'styled-components/native'
 import { SettingsIcon } from '@/assets/settings-icon'
 import { PercentageIcon } from '@/assets/percentage-icon'
 import { TreeIcon } from '@/assets/tree-icon'
 import { GlobeIcon } from '@/assets/globe-icon'
 import { formatNumber, formatTime } from '@/utils'
-import { useLazyGetYearlyQuery } from '@/services/api'
+import { useGetHourlyQuery, useLazyGetYearlyQuery } from '@/services/api'
 
 import * as S from './style'
 
 export const Overview = () => {
   const data = useTypedSelector(selectData)
   const [getYearly] = useLazyGetYearlyQuery()
+  useGetHourlyQuery()
   const theme = useTheme()
 
   const benefitsLabel = {
@@ -36,35 +37,6 @@ export const Overview = () => {
     co2: ' kg',
   }
 
-  const today = useMemo(
-    () => ({
-      expected: 113.325,
-      generation: [
-        {
-          id: 1,
-          label: formatTime('08:00:00'),
-          value: 0.4,
-        },
-        {
-          id: 2,
-          label: formatTime('11:00:00'),
-          value: 12.5,
-        },
-        {
-          id: 3,
-          label: formatTime('14:00:00'),
-          value: 12,
-        },
-        {
-          id: 4,
-          label: formatTime('17:00:00'),
-          value: 2.2,
-        },
-      ],
-    }),
-    []
-  )
-
   let content = <Text>Loading...</Text>
 
   useEffect(() => {
@@ -79,12 +51,29 @@ export const Overview = () => {
     getData()
   }, [])
 
-  if (data) {
-    let benefits = Object.entries(data.data.totals).map(([key, value]) => ({
+  if (data && data.general && data.today) {
+    const todayLabels = ['08:00:00', '11:00:00', '14:00:00', '17:00:00']
+
+    const todayData = {
+      expected: data.today.expected[0],
+      generation: data.today.generation
+        .map((item, index) => ({
+          label: data.today.x_labels[index],
+          value: item,
+        }))
+        .filter((item) => todayLabels.includes(item.label)),
+    }
+
+    // turn object into an array
+    let benefits = Object.entries(data.general.totals).map(([key, value]) => ({
       key,
       value,
     }))
+
+    // remove unwanted key
     benefits = benefits.filter((benefit) => benefit.key !== 'kwh')
+
+    // create benefits array data
     const benefitsData = benefits.map((benefit) => ({
       ...benefit,
       value: benefitsUnit[benefit.key as keyof typeof benefitsUnit]
@@ -137,7 +126,7 @@ export const Overview = () => {
                 color={theme.colors.yellow}
                 lineHeight={47}
               >
-                {formatNumber(data.data.totals.kwh)}
+                {formatNumber(data.general.totals.kwh)}
               </Text>
 
               <S.Unit fontSize={theme.fontSize.sm16} lineHeight={21}>
@@ -172,13 +161,13 @@ export const Overview = () => {
             </Text>
 
             <S.HoursContainer>
-              {today.generation.map((hour) => (
-                <S.HoursItem key={hour.id}>
+              {todayData.generation.map((hour) => (
+                <S.HoursItem key={hour.label}>
                   <S.VolumeBar>
                     <S.VolumeFilled
                       filled={
                         (hour.value /
-                          (today.expected / today.generation.length)) *
+                          (todayData.expected / todayData.generation.length)) *
                         100
                       }
                     >
@@ -194,7 +183,7 @@ export const Overview = () => {
                   </S.VolumeBar>
 
                   <Text fontSize={theme.fontSize.xxxs10} lineHeight={13}>
-                    {hour.label}
+                    {formatTime(hour.label)}
                   </Text>
                 </S.HoursItem>
               ))}

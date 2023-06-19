@@ -30,7 +30,10 @@ export const api = createApi({
         }),
       }),
     }),
+    getHourly: build.query<GenerationRequestType, void>({
+      query: () => `?dataType=hourly`,
+    }),
   }),
 })
 
-export const { useLazyGetYearlyQuery } = api
+export const { useGetHourlyQuery, useLazyGetYearlyQuery } = api
