@@ -66,7 +66,7 @@ export const Overview = () => {
           label: data.today.x_labels[index],
           value: item,
         }))
-        .filter((item) => todayLabels.includes(item.label)),
+        .filter((item) => todayLabels.includes(item.label)), // filter getting only items from todayLabels
     }
 
     // turn object into an array
