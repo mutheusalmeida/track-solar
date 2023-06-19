@@ -14,16 +14,9 @@ import { formatNumber, formatTime } from '@/utils'
 import * as S from './style'
 
 export const Overview = () => {
-  const { data } = useTypedSelector<GenerationRequestType>(selectData)
+  const data = useTypedSelector<GenerationRequestType>(selectData)
   const [generation] = useGetGenerationMutation()
   const theme = useTheme()
-
-  const totals = {
-    kwh: 72,
-    percentage: 83.53,
-    trees: 0.04,
-    co2: 8.96,
-  }
 
   const benefitsLabel = {
     percentage: 'Capac. Usada',
@@ -32,30 +25,17 @@ export const Overview = () => {
   }
 
   const benefitsIcons = {
-    percentage: <PercentageIcon width={66} percentage={48} />,
-    trees: <TreeIcon />,
-    co2: <GlobeIcon />,
+    percentage: (value: number) => (
+      <PercentageIcon width={66} percentage={value} />
+    ),
+    trees: (_value: number) => <TreeIcon />,
+    co2: (_value: number) => <GlobeIcon />,
   }
 
   const benefitsUnit = {
     percentage: '%',
     co2: ' kg',
   }
-
-  let benefits = Object.entries(data.totals).map(([key, value]) => ({
-    key,
-    value,
-  }))
-  benefits = benefits.filter((benefit) => benefit.key !== 'kwh')
-  const benefitsData = benefits.map((benefit) => ({
-    ...benefit,
-    value: benefitsUnit[benefit.key as keyof typeof benefitsUnit]
-      ? formatNumber(Math.floor(benefit.value)) +
-        benefitsUnit[benefit.key as keyof typeof benefitsUnit]
-      : Math.floor(benefit.value),
-    label: benefitsLabel[benefit.key as keyof typeof benefitsLabel],
-    icon: benefitsIcons[benefit.key as keyof typeof benefitsIcons],
-  }))
 
   const today = useMemo(
     () => ({
@@ -103,6 +83,23 @@ export const Overview = () => {
   }, [])
 
   if (data) {
+    let benefits = Object.entries(data.data.totals).map(([key, value]) => ({
+      key,
+      value,
+    }))
+    benefits = benefits.filter((benefit) => benefit.key !== 'kwh')
+    const benefitsData = benefits.map((benefit) => ({
+      ...benefit,
+      value: benefitsUnit[benefit.key as keyof typeof benefitsUnit]
+        ? formatNumber(Math.floor(benefit.value)) +
+          benefitsUnit[benefit.key as keyof typeof benefitsUnit]
+        : Math.floor(benefit.value),
+      label: benefitsLabel[benefit.key as keyof typeof benefitsLabel],
+      icon: benefitsIcons[benefit.key as keyof typeof benefitsIcons](
+        benefit.value
+      ),
+    }))
+
     content = (
       <>
         <S.Header>
@@ -143,7 +140,7 @@ export const Overview = () => {
                 color={theme.colors.yellow}
                 lineHeight={47}
               >
-                {formatNumber(data.totals.kwh)}
+                {formatNumber(data.data.totals.kwh)}
               </Text>
 
               <S.Unit fontSize={theme.fontSize.sm16} lineHeight={21}>
