@@ -8,7 +8,7 @@ type VolumeFilledType = {
 export const Container = styled.SafeAreaView`
   flex: 1;
   gap: 44px;
-  padding: 72px 16px 54px;
+  padding: 72px 24px 54px;
   background-color: ${({ theme }) => theme.colors.cyan300};
 `
 
@@ -47,9 +47,7 @@ export const TotalWrapper = styled.View`
   gap: 10px;
 `
 
-export const Unit = styled(Text)`
-  margin-top: 13px;
-`
+export const Unit = styled(Text)``
 
 export const HoursContainer = styled(BenefitsSection)``
 

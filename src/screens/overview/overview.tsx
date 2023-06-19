@@ -9,12 +9,12 @@ import { SettingsIcon } from '@/assets/settings-icon'
 import { PercentageIcon } from '@/assets/percentage-icon'
 import { TreeIcon } from '@/assets/tree-icon'
 import { GlobeIcon } from '@/assets/globe-icon'
-import { formatTime } from '@/utils'
+import { formatNumber, formatTime } from '@/utils'
 
 import * as S from './style'
 
 export const Overview = () => {
-  const data = useTypedSelector<GenerationRequestType>(selectData)
+  const { data } = useTypedSelector<GenerationRequestType>(selectData)
   const [generation] = useGetGenerationMutation()
   const theme = useTheme()
 
@@ -42,12 +42,15 @@ export const Overview = () => {
     co2: ' kg',
   }
 
-  let benefits = Object.entries(totals).map(([key, value]) => ({ key, value }))
+  let benefits = Object.entries(data.totals).map(([key, value]) => ({
+    key,
+    value,
+  }))
   benefits = benefits.filter((benefit) => benefit.key !== 'kwh')
   const benefitsData = benefits.map((benefit) => ({
     ...benefit,
     value: benefitsUnit[benefit.key as keyof typeof benefitsUnit]
-      ? Math.floor(benefit.value) +
+      ? formatNumber(Math.floor(benefit.value)) +
         benefitsUnit[benefit.key as keyof typeof benefitsUnit]
       : Math.floor(benefit.value),
     label: benefitsLabel[benefit.key as keyof typeof benefitsLabel],
@@ -89,7 +92,7 @@ export const Overview = () => {
     if (!data) {
       const getData = async () => {
         try {
-          await generation({ dataType: 'daily' }).unwrap()
+          await generation({ dataType: 'yearly' }).unwrap()
         } catch (err) {
           console.log(err)
         }
@@ -140,10 +143,12 @@ export const Overview = () => {
                 color={theme.colors.yellow}
                 lineHeight={47}
               >
-                98.646
+                {formatNumber(data.totals.kwh)}
               </Text>
 
-              <S.Unit fontSize={theme.fontSize.md20}>kWh</S.Unit>
+              <S.Unit fontSize={theme.fontSize.sm16} lineHeight={21}>
+                kWh
+              </S.Unit>
             </S.TotalWrapper>
           </S.Section>
 

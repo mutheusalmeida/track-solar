@@ -22,12 +22,11 @@ export const TabRoutes = (): JSX.Element => {
         screenOptions={({ route }) => ({
           headerShown: false,
           tabBarStyle: {
-            height: 52,
+            height: 26,
             backgroundColor: theme.colors.cyan300,
             borderTopColor: 'transparent',
             elevation: 0,
-            width: 244,
-            gap: 40,
+            width: '70%',
             alignSelf: 'center',
           },
           tabBarIconStyle: {

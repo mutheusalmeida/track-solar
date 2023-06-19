@@ -13,3 +13,7 @@ export function formatTime(time: string) {
 
   return dateTime
 }
+
+export function formatNumber(num: number) {
+  return new Intl.NumberFormat('pt-BR').format(Number(num.toFixed()))
+}
