@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
-import type { GenerationDataType, GenerationRequestType } from 'components'
+import type { GenerationDataType } from 'components'
 import { api } from './api'
 import type { RootState } from './store'
 
